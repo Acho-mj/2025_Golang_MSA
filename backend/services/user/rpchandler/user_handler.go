@@ -2,6 +2,7 @@ package rpchandler
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	connect "connectrpc.com/connect"
@@ -47,6 +48,9 @@ func (h *UserHandler) GetUser(ctx context.Context, req *connect.Request[userpb.G
 
 	user, err := h.service.GetUser(ctx, userID)
 	if err != nil {
+		if errors.Is(err, store.ErrUserNotFound) {
+			return nil, connect.NewError(connect.CodeNotFound, err)
+		}
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 

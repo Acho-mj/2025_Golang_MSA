@@ -13,6 +13,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 )
 
+var ErrUserNotFound = errors.New("사용자를 찾을 수 없습니다")
+
 type UserStorage struct {
 	// client 객체가 있어야 DB쿼리를 AWS에 보낼 수 있음
 	client *dynamodb.Client
@@ -63,7 +65,7 @@ func (s *UserStorage) GetUserByID(ctx context.Context, userID string) (*UserItem
 		return nil, fmt.Errorf("GetItem 실패: %w", err)
 	}
 	if out.Item == nil {
-		return nil, fmt.Errorf("사용자 %s를 찾을 수 없습니다", userID)
+		return nil, fmt.Errorf("%w: %s", ErrUserNotFound, userID)
 	}
 
 	var user UserItem

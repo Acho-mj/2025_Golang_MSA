@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "github.com/Acho-mj/2025_Golang_MSA/backend/gen/services/user/api;api";
+option go_package = "Acho-mj/2025_Golang_MSA/backend/gen/services/user/api;api";
 
 service UserService {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);

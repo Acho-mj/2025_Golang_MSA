@@ -11,6 +11,7 @@ type Config struct {
 	AWSEndpoint      string
 	DynamoUserTable  string
 	DynamoOrderTable string
+	UserServiceURL   string
 }
 
 func LoadConfig() (*Config, error) {
@@ -20,6 +21,7 @@ func LoadConfig() (*Config, error) {
 		AWSEndpoint:      getEnv("AWS_ENDPOINT", ""),
 		DynamoUserTable:  getEnv("DYNAMO_USER_TABLE", ""),
 		DynamoOrderTable: getEnv("DYNAMO_ORDER_TABLE", ""),
+		UserServiceURL:   getEnv("USER_SERVICE_URL", "http://localhost:8081"),
 	}
 	if cfg.DynamoUserTable == "" || cfg.DynamoOrderTable == "" {
 		return nil, fmt.Errorf("DynamoDB 테이블 이름이 비어 있음")

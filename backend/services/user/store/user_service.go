@@ -56,6 +56,9 @@ func (s *UserService) GetUser(ctx context.Context, userID string) (*models.User,
 
 	item, err := s.storage.GetUserByID(ctx, userID)
 	if err != nil {
+		if errors.Is(err, storage.ErrUserNotFound) {
+			return nil, ErrUserNotFound
+		}
 		return nil, err
 	}
 
