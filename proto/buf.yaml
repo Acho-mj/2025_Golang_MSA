@@ -2,7 +2,7 @@ version: v2
 
 # '.proto' 파일들이 어디에 있는지 buf에게 알려줌
 modules:
-  - path: proto
+  - path: services
 
 
 lint:

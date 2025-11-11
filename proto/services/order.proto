@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package order;
 
+option go_package = "github.com/choimj/2025_Golang_MSA/backend/gen/order";
+
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
   rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);

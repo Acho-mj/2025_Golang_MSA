@@ -2,9 +2,11 @@ syntax = "proto3";
 
 package user;
 
+option go_package = "github.com/choimj/2025_Golang_MSA/backend/gen/user";
+
 service UserService {
-    rpc CreateUser(CreateUserRequest) return (CreateUserResponse);
-    rpc GetUser (GetUserRequest) return (GetUserResponse);
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUser (GetUserRequest) returns (GetUserResponse);
 }
 
 message User {
