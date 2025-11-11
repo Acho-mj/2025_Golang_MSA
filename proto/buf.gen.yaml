@@ -1,0 +1,13 @@
+version: v2
+plugins:
+    # protoc-gen-go 플러그인
+  - remote: buf.build/protocolbuffers/go
+    out: ../backend/gen
+    opt:
+      - paths=source_relative
+      
+    # protoc-gen-connect-go 플러그인
+  - remote: buf.build/connectrpc/go
+    out: ../backend/gen
+    opt:
+      - paths=source_relative

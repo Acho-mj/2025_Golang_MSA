@@ -1,0 +1,25 @@
+version: v2
+
+# '.proto' 파일들이 어디에 있는지 buf에게 알려줌
+modules:
+  - path: proto
+
+
+lint:
+  # 'use'는 사용할 규칙 세트를 지정
+  # STANDARD, DEFAULT 등이 있으며, MINIMAL은 최소한의 규칙만 적용
+  use:
+    - MINIMAL
+  
+  # 'except'는 'use'로 정한 규칙 중, 예외적으로 무시할 규칙을 지정
+  except:
+    # .proto의 package 이름과 폴더 경로가 일치해야 한다는 규칙을 무시함
+    - PACKAGE_DIRECTORY_MATCH 
+    - PACKAGE_SAME_DIRECTORY
+
+# 호환성 깨짐 감지 규칙을 설정
+breaking:
+  # 'use'는 사용할 규칙 세트를 지정
+  # FILE 규칙은 파일이나 서비스, 필드가 삭제되는 등의 호환성 문제를 감지
+  use:
+    - FILE
