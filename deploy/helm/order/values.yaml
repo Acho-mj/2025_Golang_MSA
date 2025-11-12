@@ -27,7 +27,7 @@ env:
   awsEndpoint: ""
   dynamoUserTable: "user"
   dynamoOrderTable: "order"
-  userServiceURL: "http://user-service.default.svc.cluster.local:8080"
+  userServiceURL: "http://user-service-user-service.default.svc.cluster.local:8080"
 
 livenessProbe:
   path: /healthz
