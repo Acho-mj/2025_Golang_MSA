@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	userpb "Acho-mj/2025_Golang_MSA/backend/gen/services/user/api"
+	userpb "Acho-mj/2025_Golang_MSA/backend/gen/user"
 )
 
 type User struct {

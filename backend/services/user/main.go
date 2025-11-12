@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/services/user/connect"
+	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/user/userconnect"
 
 	"Acho-mj/2025_Golang_MSA/backend/internal/config"
 	"Acho-mj/2025_Golang_MSA/backend/internal/storage"

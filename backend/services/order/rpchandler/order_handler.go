@@ -6,8 +6,8 @@ import (
 
 	connect "connectrpc.com/connect"
 
-	orderpb "Acho-mj/2025_Golang_MSA/backend/gen/services/order/api"
-	orderconnect "Acho-mj/2025_Golang_MSA/backend/gen/services/order/connect"
+	orderpb "Acho-mj/2025_Golang_MSA/backend/gen/order"
+	orderconnect "Acho-mj/2025_Golang_MSA/backend/gen/order/orderconnect"
 	"Acho-mj/2025_Golang_MSA/backend/services/order/models"
 	"Acho-mj/2025_Golang_MSA/backend/services/order/store"
 )
@@ -71,4 +71,3 @@ func (h *OrderHandler) GetOrder(ctx context.Context, req *connect.Request[orderp
 }
 
 var _ orderconnect.OrderServiceHandler = (*OrderHandler)(nil)
-

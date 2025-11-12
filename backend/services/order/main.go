@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	orderconnect "Acho-mj/2025_Golang_MSA/backend/gen/services/order/connect"
-	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/services/user/connect"
+	orderconnect "Acho-mj/2025_Golang_MSA/backend/gen/order/orderconnect"
+	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/user/userconnect"
 
 	"Acho-mj/2025_Golang_MSA/backend/internal/config"
 	"Acho-mj/2025_Golang_MSA/backend/internal/storage"

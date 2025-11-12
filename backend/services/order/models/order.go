@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	orderpb "Acho-mj/2025_Golang_MSA/backend/gen/services/order/api"
+	orderpb "Acho-mj/2025_Golang_MSA/backend/gen/order"
 )
 
 type OrderItem struct {
@@ -70,4 +70,3 @@ func OrderFromProto(p *orderpb.Order) *Order {
 		CreatedAt: createdAt,
 	}
 }
-

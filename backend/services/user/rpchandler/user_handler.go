@@ -7,8 +7,8 @@ import (
 
 	connect "connectrpc.com/connect"
 
-	userpb "Acho-mj/2025_Golang_MSA/backend/gen/services/user/api"
-	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/services/user/connect"
+	userpb "Acho-mj/2025_Golang_MSA/backend/gen/user"
+	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/user/userconnect"
 	"Acho-mj/2025_Golang_MSA/backend/services/user/store"
 )
 

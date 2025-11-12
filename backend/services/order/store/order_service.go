@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	userpb "Acho-mj/2025_Golang_MSA/backend/gen/services/user/api"
-	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/services/user/connect"
+	userpb "Acho-mj/2025_Golang_MSA/backend/gen/user"
+	userconnect "Acho-mj/2025_Golang_MSA/backend/gen/user/userconnect"
 	"Acho-mj/2025_Golang_MSA/backend/internal/storage"
 	"Acho-mj/2025_Golang_MSA/backend/services/order/models"
 
