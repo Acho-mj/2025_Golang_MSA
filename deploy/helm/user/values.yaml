@@ -1,0 +1,40 @@
+image:
+  repository: 052747538895.dkr.ecr.ap-northeast-2.amazonaws.com/user-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 8080
+
+podAnnotations: {}
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+env:
+  port: "8080"
+  awsRegion: ap-northeast-2
+  awsEndpoint: ""
+  dynamoUserTable: "user"
+  dynamoOrderTable: "order"
+
+livenessProbe:
+  path: /healthz
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  path: /healthz
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
