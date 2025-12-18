@@ -1,12 +1,17 @@
 # 2025 Golang MSA
 
-Go 기반 마이크로서비스 아키텍처 실습 프로젝트입니다. 주문(`order-service`)과 사용자(`user-service`) 두 개의 서비스를 중심으로 하며, 다음과 같은 기술 스택을 사용합니다.
+Go 기반 마이크로서비스 아키텍처 실습 프로젝트로, 주문(`order-service`)과 사용자(`user-service`) 두 개의 서비스를 중심으로 개발했다.
 
+</br>
+
+## 기술 스택
 - **Connect RPC (gRPC compatible)**: 서비스 간 통신을 위한 RPC 프레임워크
 - **Amazon DynamoDB**: 주문/사용자 데이터를 저장하는 NoSQL 데이터베이스
 - **Amazon ECR + EKS**: Docker 이미지 관리와 Kubernetes 배포 환경
 - **Helm**: Kubernetes 리소스를 선언적으로 배포
 - **IRSA (IAM Roles for Service Accounts)**: 파드별로 AWS 권한을 분리
+
+</br>
 
 ## 구조 요약
 
@@ -19,11 +24,15 @@ Go 기반 마이크로서비스 아키텍처 실습 프로젝트입니다. 주�
 | 서비스 간 통신 | Connect RPC | `order-service` → `user-service` RPC 호출 (USER_SERVICE_URL 환경 변수 기반) |
 | 데이터 저장소 | DynamoDB | `order`/`user` 테이블, IRSA (`eks-dynamodb-role-irsa`)로 접근 제어 |
 
+</br>
+
 ## 주요 기능
 
-- 주문 서비스는 사용자 서비스를 RPC로 호출하여 사용자 정보를 검증한 뒤 주문을 생성합니다.
-- `make docker-push` 및 `make helm-deploy`를 통해 이미지 빌드/푸시와 배포를 자동화할 수 있습니다.
-- Helm 차트(`deploy/helm/order`, `deploy/helm/user`)에서 환경 변수, 리소스 한도, 프로브 등을 쉽게 조정할 수 있습니다.
+- 주문 서비스는 사용자 서비스를 RPC로 호출하여 사용자 정보를 검증한 뒤 주문을 생성한다.
+- `make docker-push` 및 `make helm-deploy`를 통해 이미지 빌드/푸시와 배포를 자동화할 수 있다.
+- Helm 차트(`deploy/helm/order`, `deploy/helm/user`)에서 환경 변수, 리소스 한도, 프로브 등을 쉽게 조정할 수 있다.
+
+</br>
 
 ## 로컬/배포 워크플로우
 
@@ -47,3 +56,25 @@ Go 기반 마이크로서비스 아키텍처 실습 프로젝트입니다. 주�
      -d '{"user_id":"user1"}' \
      http://user-service-user-service.default.svc.cluster.local:8080/user.UserService/GetUser
    ```
+
+</br>
+
+## 서비스 아키텍처 개요
+
+```mermaid
+flowchart LR
+    dev[개발자] -->|docker-push| ecr[(Amazon ECR)]
+    dev -->|helm-deploy| eks[(Amazon EKS)]
+
+    subgraph EKS["EKS"]
+        orderPod[(order-service Pod)]
+        userPod[(user-service Pod)]
+    end
+
+    orderPod -->|USER_SERVICE_URL| userSvc[(user-service Service)]
+    orderPod -->|IRSA| dynamoOrder[(DynamoDB order 테이블)]
+    userPod -->|IRSA| dynamoUser[(DynamoDB user 테이블)]
+
+    ecr --> orderPod
+    ecr --> userPod
+```
